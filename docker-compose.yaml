@@ -1,0 +1,18 @@
+services:
+
+  matrix-chatbot:
+    container_name: matrix-chatbot
+    hostname: matrix-chatbot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      dockernet:
+        ipv4_address: 172.16.0.50
+    volumes:
+      - ./data/config.json:/app/config.json:ro
+    restart: unless-stopped
+
+networks:
+  dockernet:
+    external: true
