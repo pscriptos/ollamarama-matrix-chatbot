@@ -1,7 +1,5 @@
 FROM ollama/ollama
 
-RUN ollama pull llama3.1:8b-instruct-q5_K_M
-
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 

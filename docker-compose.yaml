@@ -1,12 +1,11 @@
 services:
 
   ollama:
-    hostname: ollama
-    container_name: ollama
+    image: ollama/ollama
     build:
       context: .
       dockerfile: Dockerfile.ollama
-    image: ollama/ollama
+    hostname: ollama
     container_name: ollama
     ports:
       - "11434:11434"
@@ -16,11 +15,12 @@ services:
     restart: unless-stopped
 
   matrix-chatbot:
-    container_name: matrix-chatbot
-    hostname: matrix-chatbot
+    image: matrix-chatbot:latest
     build:
       context: .
       dockerfile: Dockerfile.chatbot
+    container_name: matrix-chatbot
+    hostname: matrix-chatbot
     networks:
       dockernet:
         ipv4_address: 172.16.0.50
