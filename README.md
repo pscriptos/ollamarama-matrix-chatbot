@@ -32,6 +32,31 @@ In der Datei `start.sh` können weitere Modelle gepflegt werden, welche dann nac
 
 Weitere Modelle können [hier](https://ollama.ai/library) geladen werden.
 
+Wenn die Konfiguration gemacht ist, kann der Docker mit 
+
+```bash
+docker-compose up --build
+```
+
+gestartet werden.
+Dies ist ideal um gleich auch die Logs zu sehen.
+
+Nun tritt der Bot automatisch den konfigurierten Channels bei und sollte dir im Idealfall direkt zu Verfügung stehen.
+
+Den Docker startest du richtig mit
+
+```bash
+docker-compose -d
+```
+
+Die erste Nachricht versendest du mit `.ai message`
+
+Ein Beispiel:
+
+```bash
+.ai Hallo, wie geht es dir?
+```
+
 
 # Verwendung  
 
