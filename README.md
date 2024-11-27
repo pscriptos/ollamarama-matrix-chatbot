@@ -11,7 +11,7 @@ Dieser Chatbot kommt zusammen mit dem Ollama Docker, zu finden [hier](https://hu
 
 ## Setup
 
-Installiere dir zuerst Docker. Dies kannst du [hier](https://github.com/h1ddenpr0cess20/ollamarama-matrix) machen.
+Installiere dir zuerst Docker. Dies kannst du mit [diesem Script](https://github.com/h1ddenpr0cess20/ollamarama-matrix) machen.
 
 Anschließend clonst du mein Projekt:
 
