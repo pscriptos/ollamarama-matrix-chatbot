@@ -1,16 +1,35 @@
 services:
 
-  matrix-chatbot:
-    container_name: matrix-chatbot
-    hostname: matrix-chatbot
+  ollama:
+    image: ollama/ollama
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.ollama
+    hostname: ollama
+    container_name: ollama
+    networks:
+      dockernet:
+        ipv4_address: 172.16.0.51
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./data/ollama/history:/root/.ollama
+    restart: unless-stopped
+
+  matrix-chatbot:
+    image: matrix-chatbot:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.chatbot
+    container_name: matrix-chatbot
+    hostname: matrix-chatbot
     networks:
       dockernet:
         ipv4_address: 172.16.0.50
+    depends_on:
+      - ollama
     volumes:
-      - ./data/config.json:/app/config.json:ro
+      - ./data/chatbot/config.json:/app/config.json:ro
     restart: unless-stopped
 
 networks:

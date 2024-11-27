@@ -1,6 +1,3 @@
 matrix-nio
 requests
 markdown
-asyncio
-datetime
-json

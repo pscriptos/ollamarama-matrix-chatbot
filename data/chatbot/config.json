@@ -19,7 +19,7 @@
     },
     "ollama":
     {
-        "api_base": "http://localhost:11434",
+        "api_base": "http://ollama:11434",
         "options":
         {
             "temperature": 0.8,
