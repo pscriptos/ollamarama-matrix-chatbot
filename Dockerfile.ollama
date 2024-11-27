@@ -4,4 +4,4 @@ COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
 # Standardbefehl zum Starten des Servers
-CMD ["/start.sh"]
+ENTRYPOINT ["/start.sh"]
