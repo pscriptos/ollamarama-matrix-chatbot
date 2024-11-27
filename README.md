@@ -1,84 +1,75 @@
-# ollamarama-matrix
-Ollamarama is an AI chatbot for the [Matrix](https://matrix.org/) chat protocol using Ollama. It can roleplay as almost anything you can think of. You can set any default personality you would like. It can be changed at any time, and each user has their own separate chat history with their chosen personality setting. Users can interact with each others chat histories for collaboration if they would like, but otherwise, conversations are separated, per channel, per user.
+# ollamarama-matrix-chatbot
 
-This is based on my earlier project, [infinigpt-matrix](https://github.com/h1ddenpr0cess20/infinigpt-matrix), which uses OpenAI and costs money to use.  (Now updated with OpenAI/Ollama model switching)
+### Zuerst das Wichtigste:
 
-IRC version available at [ollamarama-irc](https://github.com/h1ddenpr0cess20/ollamarama-irc)
+Dies ist ein Fork von [Dustin Whyte](https://github.com/h1ddenpr0cess20/ollamarama-matrix), welchen ich anschließend in Docker inpelementiert habe.
 
-Terminal-based version at [ollamarama](https://github.com/h1ddenpr0cess20/ollamarama)
+
+Ollamarama ist ein KI-Chatbot für das [Matrix](https://matrix.org/) Chatprotokoll mit Ollama. Er kann fast alles spielen, was Du dir vorstellen kannst. Du kannst jede Standardpersönlichkeit einstellen, die du möchtest. Sie kann jederzeit geändert werden, und jeder Benutzer hat seinen eigenen Chatverlauf mit der von ihm gewählten Persönlichkeitseinstellung. Die Benutzer können mit den Chatverläufen der anderen interagieren, um zusammenzuarbeiten, wenn sie das möchten, aber ansonsten sind die Unterhaltungen getrennt, pro Kanal und pro Benutzer.
+Dieser Chatbot kommt zusammen mit dem Ollama Docker, zu finden [hier](https://hub.docker.com/r/ollama/ollama).
+
 
 ## Setup
 
-Install and familiarize yourself with [Ollama](https://ollama.ai/), make sure you can run local LLMs, etc.
+Installiere dir zuerst Docker. Dies kannst du [hier](https://github.com/h1ddenpr0cess20/ollamarama-matrix) machen.
 
-You can install and update it with this command:
-```
-curl https://ollama.ai/install.sh | sh
-```
+Anschließend clonst du mein Projekt:
 
-
-Once it's all set up, you'll need to [download the models](https://ollama.ai/library) you want to use.  You can play with the available ones and see what works best for you.  Add those to the config.json file.  If you want to use the ones I've included, just run ollama pull _modelname_ for each.
-
-
-You'll also need to install matrix-nio
-```
-pip3 install matrix-nio
+```bash
+git clone https://git.techniverse.net/scriptos/ollamarama-matrix
 ```
 
-Set up a [Matrix account](https://app.element.io/) for your bot.  You'll need the server, username and password.
+Anschließend ins Verzeichnis wechseln und die Konfigurationsdatei für den Matrix-Chatbot konfigurieren:
 
-Add those to the config.json file.
-
-```
-python3 ollamarama.py
+```bash
+cd ollamarama-matrix && nano data/chatbot/config.json)
 ```
 
-## Use
+In der `config.json` werden die Zugangsdaten für den Chatbot gepflegt. Dieser muss im Vorfeld auf dem Matrix Server erstellt werden. Dies kann [hier](https://app.element.io/) gemacht werden.
+Weiterhin können in dieser Konfigurationsdatei weitere Modelle gepflegt werden, welche vom Chatbot anschließend verwendet werden könnten.
+
+In der Datei `start.sh` können weitere Modelle gepflegt werden, welche dann nach dem Starten vom Ollama Docker Container runtergeladen werden.
+
+Weitere Modelle können [hier](https://ollama.ai/library) geladen werden.
 
 
-**.ai _message_** or **botname: _message_**
+# Verwendung  
 
-&emsp;Basic usage.
+**.ai _nachricht_** oder **botname: _nachricht_**
 
-    
-**.x _user_ _message_**
+   Grundlegende Verwendung.
 
-&emsp;This allows you to talk to another user's chat history.
+**.x _benutzer_ _nachricht_**
 
-&emsp;_user_ is the display name of the user whose history you want to use
+   Erlaubt es dir, auf die Chat-Historie eines anderen Benutzers zuzugreifen.
 
-    
-**.persona _personality_**
+   _benutzer_ ist der Anzeigename des Benutzers, dessen Historie du verwenden möchtest.
 
-&emsp;Changes the personality.  It can be a character, personality type, object, idea, whatever.  Use your imagination.
+**.persona _persönlichkeit_**
 
+   Ändert die Persönlichkeit. Es kann eine Figur, ein Persönlichkeitstyp, ein Objekt, eine Idee, was auch immer sein. Nutze deine Fantasie.
 
-**.custom _prompt_**
+**.custom _eingabeaufforderung_**
 
-&emsp;Allows use of a custom system prompt instead of the roleplaying prompt
+   Erlaubt die Verwendung einer benutzerdefinierten Systemaufforderung anstelle der Rollenspielaufforderung.
 
 **.reset**
 
-&emsp;Clear history and reset to preset personality
+   Verlauf löschen und auf voreingestellte Persönlichkeit zurücksetzen.
 
-    
 **.stock**
 
-&emsp;Clear history and use without a system prompt
+   Verlauf löschen und ohne Systemaufforderung verwenden.
 
+**Nur für Admins**
 
-**Admin only commands**
+**.model _modell_**
 
+   Lasse den Modellnamen weg, um das aktuelle Modell und verfügbare Modelle anzuzeigen.
 
-**.model _model_**
-
-&emsp;Omit model name to show current model and available models
-
-&emsp;Include model name to change model
-
+   Gib den Modellnamen ein, um das Modell zu wechseln.
 
 **.clear**
 
-&emsp;Reset bot for everyone
-
+   Setzt den Bot für alle zurück.
 
